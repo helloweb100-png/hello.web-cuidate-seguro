@@ -327,6 +327,7 @@ html.lenis, html.lenis body { height: auto; }
 .hero-sub { margin-top: 20px; max-width: 46ch; font-size: clamp(1.02rem, 2.3vw, 1.2rem); line-height: 1.6; color: rgba(214, 229, 255, .84); }
 .hero-ctas { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
 .hero-ctas .btn { width: 100%; }
+.hero-ctas--form { margin-top: 12px; }
 .hero .eyebrow { margin-bottom: 16px; }
 
 /* Visual del hero */
@@ -411,19 +412,19 @@ html.lenis, html.lenis body { height: auto; }
 .strip-track:hover { animation-play-state: paused; }
 .strip-track .wm { padding-right: clamp(44px, 7vw, 92px); }
 
-/* Wordmarks tipográficos de las aseguradoras */
-.wm { display: inline-flex; flex-direction: column; align-items: flex-start; font-family: var(--font-display); font-size: 1.55rem; line-height: 1; white-space: nowrap; color: #5b6b8c; transition: color .3s; }
-.strip-track .wm:hover { color: var(--navy-800); }
-.wm small { display: block; margin-top: 3px; font-size: .38em; font-weight: 600; letter-spacing: .3em; }
-.wm-mapfre { font-weight: 800; letter-spacing: .01em; }
-.wm-qualitas { font-weight: 700; letter-spacing: -.02em; }
-.wm-axa { font-weight: 800; letter-spacing: .14em; }
-.wm-sura { font-weight: 500; letter-spacing: -.03em; font-size: 1.75rem; }
-.wm-hdi { font-weight: 800; letter-spacing: .04em; }
-.wm-afirme { font-weight: 700; letter-spacing: .08em; }
-.wm-banorte { font-weight: 800; letter-spacing: .06em; }
-.wm-chubb { font-weight: 600; letter-spacing: .26em; }
-.wm-zurich { font-weight: 600; letter-spacing: .18em; }
+/* Logotipos oficiales de las aseguradoras.
+   --lh = altura en la franja (compensa la proporción de cada logo) · --hw = ancho dentro de los nodos del hub. */
+.wm { display: inline-flex; align-items: center; line-height: 1; white-space: nowrap; }
+.wm-logo { display: block; width: auto; max-width: none; height: var(--lh, 30px); }
+.wm-mapfre { --lh: 36px; --hw: 54px; }
+.wm-qualitas { --lh: 44px; --hw: 54px; }
+.wm-axa { --lh: 42px; --hw: 24px; }
+.wm-sura { --lh: 38px; --hw: 44px; }
+.wm-hdi { --lh: 44px; --hw: 34px; }
+.wm-afirme { --lh: 28px; --hw: 60px; }
+.wm-banorte { --lh: 28px; --hw: 66px; }
+.wm-chubb { --lh: 22px; --hw: 60px; }
+.wm-zurich { --lh: 34px; --hw: 54px; }
 
 /* ---------- SCROLL EXPAND ---------- */
 .expand { position: relative; isolation: isolate; height: 100vh; height: 100svh; overflow: hidden; background: var(--navy-950); color: #fff; }
@@ -530,6 +531,74 @@ html.js .expand-reveal { opacity: 0; }
     .bcard--trip { min-height: 0; }
 }
 
+/* ---------- PROMO · GASTOS MÉDICOS MAYORES ---------- */
+.gmm { background: #fff; }
+.gmm-card {
+    position: relative; isolation: isolate; overflow: hidden; display: grid; gap: clamp(28px, 4vw, 40px); color: #fff;
+    padding: clamp(28px, 5vw, 64px); border-radius: 40px;
+    background: radial-gradient(120% 90% at 100% 0%, #0f3a86 0%, var(--navy-900) 60%);
+    box-shadow: 0 50px 100px -50px rgba(10, 86, 194, .85);
+}
+.gmm-fx { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.gmm-fx i { position: absolute; border-radius: 50%; }
+.gmm-fx i:nth-child(1) { width: 70vmin; height: 70vmin; right: -18vmin; top: -26vmin; background: radial-gradient(circle, rgba(11, 140, 255, .42), transparent 62%); animation: drift-b 26s ease-in-out infinite alternate; }
+.gmm-fx i:nth-child(2) { width: 60vmin; height: 60vmin; left: -22vmin; bottom: -30vmin; background: radial-gradient(circle, rgba(10, 86, 194, .5), transparent 62%); animation: drift-a 30s ease-in-out infinite alternate; }
+.gmm-top { display: grid; gap: 32px; align-items: center; }
+.gmm-title { font: 700 clamp(2rem, 5.4vw, 3.9rem)/1.04 var(--font-display); letter-spacing: -.035em; word-spacing: .1em; text-wrap: balance; }
+.gmm-sub { margin-top: 16px; max-width: 40ch; font-size: clamp(1.02rem, 1.5vw, 1.2rem); line-height: 1.6; color: rgba(214, 229, 255, .84); }
+.gmm-copy .btn { margin-top: 28px; }
+.gmm-price {
+    position: relative; justify-self: start; display: grid; align-content: center; justify-items: center; width: clamp(170px, 46vw, 240px); aspect-ratio: 1;
+    border-radius: 50%; text-align: center; line-height: 1;
+    background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .22); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24), 0 30px 60px -24px rgba(3, 11, 31, .8);
+}
+.gmm-price::before { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 1px dashed rgba(124, 194, 255, .45); animation: spin 40s linear infinite; }
+.gmm-price small { font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--azure-200); }
+.gmm-price strong { margin: 8px 0; font: 700 clamp(2.6rem, 8vw, 4rem)/1 var(--font-display); letter-spacing: -.04em; }
+
+.gmm-zone { padding-top: clamp(24px, 3.5vw, 34px); border-top: 1px solid rgba(255, 255, 255, .14); }
+.gmm-label { margin-bottom: 16px; font: 700 .78rem/1.3 var(--font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--azure-300); }
+.gmm-hosp { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.gmm-hosp li {
+    flex: 0 1 calc(50% - 6px); height: 84px; padding: 14px 18px; display: grid; place-items: center; border-radius: var(--r-md);
+    background: #fff; box-shadow: 0 14px 30px -14px rgba(3, 11, 31, .7); transition: translate .5s var(--ease);
+}
+.gmm-hosp li:hover { translate: 0 -4px; }
+.gmm-hosp img { width: auto; height: auto; max-width: 100%; max-height: 52px; }
+/* Logos oficiales en versión clara (para fondo oscuro): se muestran en gris sobre la tarjeta blanca. */
+.gmm-hosp .is-mono img { filter: brightness(0) opacity(.72); }
+.gmm-hosp-txt span { font: 600 1.05rem/1.2 var(--font-display); letter-spacing: -.02em; text-align: center; color: var(--ink-2); }
+.gmm-hosp-txt b { font-weight: 800; color: var(--navy-800); }
+
+.gmm-pay { display: flex; flex-direction: column; gap: 22px; }
+.gmm-pay .gmm-label { margin-bottom: 12px; }
+.gmm-cards { display: flex; flex-wrap: wrap; gap: 10px; }
+.gmm-cards li { width: 84px; height: 48px; padding: 0 14px; display: grid; place-items: center; border-radius: 14px; background: #fff; }
+.gmm-cards img { width: auto; height: auto; max-width: 100%; max-height: 26px; }
+.gmm-msi {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 14px; padding: 12px 24px 12px 12px; border-radius: 22px;
+    background: linear-gradient(135deg, #0a7bf5 0%, #0a56c2 100%); box-shadow: var(--shadow-glow), inset 0 1px 0 rgba(255, 255, 255, .28);
+}
+.gmm-msi i { width: 44px; height: 44px; display: grid; place-items: center; flex: none; border-radius: 14px; font-size: 1.5rem; background: rgba(255, 255, 255, .18); }
+.gmm-msi p { font: 500 1.02rem/1.2 var(--font-display); }
+.gmm-msi strong { display: block; font: 700 1.35rem/1.1 var(--font-display); letter-spacing: -.02em; }
+.gmm-card .fineprint { margin-top: 0; }
+
+@media (min-width: 640px) {
+    .gmm-hosp li { flex-basis: calc((100% - 24px) / 3); }
+}
+@media (min-width: 768px) {
+    .gmm-top { grid-template-columns: 1fr auto; gap: 48px; }
+    .gmm-price { justify-self: end; width: 210px; }
+    .gmm-pay { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+    .gmm-msi { align-self: auto; }
+}
+@media (min-width: 1024px) {
+    .gmm-price { width: 260px; }
+    .gmm-hosp li { flex-basis: calc((100% - 48px) / 5); height: 96px; }
+}
+
 /* ---------- MOMENTOS (scroll horizontal) ---------- */
 .moments { position: relative; background: var(--navy-950); color: #fff; }
 .moments-pin { position: relative; height: 100vh; height: 100svh; display: flex; align-items: center; overflow: hidden; }
@@ -628,13 +697,13 @@ html.js .expand-reveal { opacity: 0; }
 .hub-node-in { position: absolute; left: 0; top: 0; width: 0; height: 0; animation: counter var(--dur) linear infinite; }
 .hub-node .wm {
     position: absolute; left: 0; top: 0; translate: -50% -50%; align-items: center;
-    padding: 9px 13px; border-radius: 999px; font-size: .74rem; color: var(--navy-800); background: #fff;
+    padding: 9px 13px; border-radius: 999px; background: #fff;
     box-shadow: 0 14px 30px -12px rgba(3, 11, 31, .8);
 }
-.hub-node .wm-sura { font-size: .86rem; }
+.hub-node .wm-logo { width: var(--hw); height: auto; }
 @media (min-width: 768px) {
-    .hub-node .wm { padding: 11px 18px; font-size: .9rem; }
-    .hub-node .wm-sura { font-size: 1.02rem; }
+    .hub-node .wm { padding: 11px 18px; }
+    .hub-node .wm-logo { width: calc(var(--hw) * 1.85); }
 }
 @media (min-width: 1024px) {
     .hub-grid { grid-template-columns: 1fr 1fr; }
@@ -678,12 +747,29 @@ html.js .expand-reveal { opacity: 0; }
 }
 .tcard:hover { translate: 0 -6px; background: rgba(255, 255, 255, .11); border-color: rgba(124, 194, 255, .5); }
 .tcard-ico { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 18px; font-size: 1.7rem; color: #fff; background: linear-gradient(135deg, #1d8bff, #0a56c2); box-shadow: 0 14px 30px -12px rgba(11, 140, 255, .8); }
+.tcard-flag {
+    position: absolute; top: 22px; right: 22px; width: 84px; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; rotate: 5deg;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .3), 0 16px 30px -10px rgba(3, 11, 31, .8);
+    transition: rotate .6s var(--ease), translate .6s var(--ease);
+}
+.tcard:hover .tcard-flag { rotate: -3deg; translate: 0 -4px; }
+.tcard-express {
+    position: absolute; top: 30px; right: 22px; display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px 6px 6px; border-radius: 999px;
+    font: 800 .82rem/1 var(--font-display); font-style: italic; letter-spacing: .16em; text-transform: uppercase; color: #fff;
+    background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .28); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), 0 14px 30px -12px rgba(3, 11, 31, .8);
+}
+.tcard-express i { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; font-size: 1.05rem; font-style: normal; color: #3a2400; background: linear-gradient(135deg, #ffd75e, #ff9f1c); box-shadow: 0 0 18px rgba(255, 184, 46, .6); }
 .tcard h3 { margin-top: 22px; font: 600 1.3rem/1.15 var(--font-display); letter-spacing: -.025em; }
 .tcard p { margin-top: 10px; color: rgba(214, 229, 255, .82); font-size: .95rem; max-width: 36ch; }
 .trips-foot { margin-top: clamp(32px, 5vw, 56px); display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 @media (min-width: 768px) {
     .trip-grid { grid-template-columns: repeat(6, 1fr); gap: 16px; }
     .tcard { padding: 32px; }
+    .tcard-flag { top: 22px; right: 26px; width: clamp(64px, 38%, 104px); }
+    .tcard:nth-child(1) .tcard-flag { width: clamp(96px, 22%, 150px); }
+    .tcard-express { top: 34px; right: 32px; padding-right: 22px; font-size: 1.05rem; }
+    .tcard-express i { width: 40px; height: 40px; font-size: 1.3rem; }
     .tcard:nth-child(1) { grid-column: span 4; }
     .tcard:nth-child(2) { grid-column: span 2; }
     .tcard:nth-child(3) { grid-column: span 2; }
