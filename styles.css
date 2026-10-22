@@ -687,11 +687,15 @@ html.js .bcard-body .bcard-more { margin-top: 10px; }
 .moment:nth-of-type(odd) { margin-bottom: 4vh; }
 .moment img { position: absolute; top: 0; left: -9%; z-index: -2; width: 118%; height: 100%; max-width: none; object-fit: cover; }
 .moment-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(3, 11, 31, 0) 28%, rgba(3, 11, 31, .92) 100%); }
-.moment-body { position: absolute; inset: auto 0 0 0; padding: clamp(20px, 3vw, 32px); display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.moment-body { position: absolute; inset: 0; padding: clamp(24px, 4vw, 40px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; }
 .tags { display: flex; flex-wrap: wrap; gap: 4px 14px; font: 600 .76rem/1.4 var(--font-body); letter-spacing: .06em; text-transform: uppercase; color: var(--azure-200); }
 .moment h3 { font: 700 clamp(1.5rem, 3.4vw, 2rem)/1.1 var(--font-display); letter-spacing: -.03em; }
 .moment p { max-width: 34ch; font-size: .95rem; line-height: 1.55; color: rgba(226, 238, 255, .9); }
 .moment .link-arrow { margin-top: 6px; }
+.moment-body .tags { justify-content: center; font-size: .86rem; }
+.moment-body h3 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+.moment-body p { max-width: 30ch; font-size: 1.12rem; }
+.moment-body .link-arrow { margin-top: 10px; font-size: 1.05rem; }
 .moment--cta { display: grid; place-items: center; background: linear-gradient(150deg, #0a7bf5 0%, #0a45a8 100%); }
 .moment-cta-in { padding: clamp(24px, 4vw, 40px); display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
 .moment-cta-in > i { font-size: 3rem; color: var(--azure-200); }
