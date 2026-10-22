@@ -137,6 +137,56 @@
         });
     }
 
+    /** "Conoce más...": ventana con la información de cada tarjeta de seguro (<template class="bcard-info">). */
+    function initMore() {
+        const dlg = $('#more');
+        if (!dlg || typeof dlg.showModal !== 'function') return;
+        const ico = $('#more-ico');
+        const title = $('#more-title');
+        const body = $('#more-body');
+        const cta = $('#more-cta');
+
+        // Bloquea el scroll de la página mientras la ventana está abierta (sin que se mueva el contenido por la barra de scroll).
+        const lock = (on) => {
+            if (lenis) on ? lenis.stop() : lenis.start();
+            html.style.overflow = on ? 'hidden' : '';
+            html.style.scrollbarGutter = on ? 'stable' : '';
+        };
+
+        const open = (btn) => {
+            const card = btn.closest('.bcard');
+            const info = card && $('.bcard-info', card);
+            if (!info || dlg.open) return;
+            title.textContent = $('h3', card).textContent;
+            ico.className = $('.bcard-ico', card).className.replace('bcard-ico', '').trim();
+            body.replaceChildren(info.content.cloneNode(true));
+            body.scrollTop = 0;
+            const wa = $('[data-wa]', card);
+            if (wa) cta.href = waUrl(wa.dataset.wa);
+            lock(true);
+            dlg.showModal();
+        };
+
+        const close = () => {
+            if (!dlg.open || dlg.classList.contains('is-closing')) return;
+            dlg.classList.add('is-closing');
+            const onEnd = (e) => { if (e.target === dlg) done(); };
+            const done = () => {
+                clearTimeout(fallback);
+                dlg.removeEventListener('animationend', onEnd);
+                dlg.classList.remove('is-closing');
+                dlg.close();
+            };
+            const fallback = setTimeout(done, 400);
+            dlg.addEventListener('animationend', onEnd);
+        };
+
+        $$('.bcard-more').forEach((btn) => btn.addEventListener('click', () => open(btn)));
+        $('#more-close').addEventListener('click', close);
+        dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
+        dlg.addEventListener('close', () => lock(false)); // también cubre la tecla Esc
+    }
+
     /** Formulario: valida y redirige a WhatsApp con el mensaje armado. */
     function initForm() {
         const form = $('#wa-form');
@@ -471,14 +521,14 @@
         });
     }
 
-    /** Pines principales (se crean primero para que los demás triggers calculen bien). */
+    /** Pines principales (se crean primero para que los demás triggers calculen bien).
+     *  Solo en pantallas ≥768px: en celular ambas secciones se muestran normales, sin pin. */
     function initPins() {
         const mm = gsap.matchMedia();
 
         /* ---- Imagen que se abre a pantalla completa ---- */
-        mm.add({ desk: '(min-width: 768px)', mob: '(max-width: 767px)' }, (ctx) => {
-            const { desk } = ctx.conditions;
-            const from = desk ? { '--iy': 18, '--ix': 32, '--rd': 28 } : { '--iy': 24, '--ix': 12, '--rd': 24 };
+        mm.add('(min-width: 768px)', () => {
+            const from = { '--iy': 18, '--ix': 32, '--rd': 28 };
             const nums = $$('.expand [data-count]');
             let counted = false;
 
@@ -487,7 +537,7 @@
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.expand', start: 'top top', end: '+=230%',
-                    pin: true, scrub: .7, anticipatePin: 1, invalidateOnRefresh: true,
+                    pin: true, scrub: .7, anticipatePin: 1, invalidateOnRefresh: true, refreshPriority: 2,
                 },
             });
             tl.fromTo('.expand-media', from, { '--iy': 0, '--ix': 0, '--rd': 0, ease: 'none', duration: 1 }, 0)
@@ -507,15 +557,16 @@
         });
 
         /* ---- Scroll horizontal de momentos ---- */
-        const track = $('#moments-track');
-        const section = $('.moments');
-        if (track && section) {
+        mm.add('(min-width: 768px)', () => {
+            const track = $('#moments-track');
+            const section = $('.moments');
+            if (!track || !section) return;
             const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
             const pan = gsap.to(track, {
                 x: () => -distance(), ease: 'none',
                 scrollTrigger: {
                     trigger: section, start: 'top top', end: () => `+=${distance()}`,
-                    pin: true, scrub: .8, anticipatePin: 1, invalidateOnRefresh: true,
+                    pin: true, scrub: .8, anticipatePin: 1, invalidateOnRefresh: true, refreshPriority: 1,
                 },
             });
             gsap.to('.moments-meter i', {
@@ -529,7 +580,7 @@
                     scrollTrigger: { trigger: img.parentElement, containerAnimation: pan, start: 'left right', end: 'right left', scrub: true },
                 });
             });
-        }
+        });
     }
 
     /** Reveals de entrada, tipografía por palabra y bento escalonado. */
@@ -703,6 +754,7 @@
         initMenu();
         initTabs();
         initAccordion();
+        initMore();
         initForm();
         initSpotlight();
 
