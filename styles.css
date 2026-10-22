@@ -494,17 +494,20 @@ html.js .expand-reveal { opacity: 0; }
 .bcard--navy .bcard-go { border-color: rgba(255, 255, 255, .35); color: #fff; }
 .bcard--navy .bcard-go:hover { background: var(--azure-500); border-color: var(--azure-500); }
 
-.bcard--auto, .bcard--trip { grid-column: span 2; color: #fff; border-color: transparent; background: var(--navy-900); }
+.bcard--auto, .bcard--trip, .bcard--photo { grid-column: span 2; color: #fff; border-color: transparent; background: var(--navy-900); }
 .bcard--auto { min-height: 360px; }
 .bcard--trip { min-height: 230px; }
+.bcard--photo { min-height: 340px; }
+.bcard--gmm .bcard-img { object-position: 50% 12%; }
 .bcard-img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: scale 1.4s var(--ease); }
 .bcard:hover .bcard-img { scale: 1.06; }
 .bcard-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(3, 11, 31, .12) 10%, rgba(3, 11, 31, .88) 100%); }
 .bcard--trip .bcard-shade { background: linear-gradient(90deg, rgba(3, 11, 31, .86) 0%, rgba(3, 11, 31, .3) 100%); }
+.bcard--photo .bcard-shade { background: linear-gradient(180deg, rgba(3, 11, 31, .04) 0%, rgba(3, 11, 31, .5) 42%, rgba(3, 11, 31, .92) 100%); }
 .bcard-body { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; }
-.bcard--auto h3, .bcard--trip h3 { color: #fff; font-size: clamp(1.5rem, 3vw, 2rem); margin-top: 14px; }
-.bcard--auto p, .bcard--trip p { color: rgba(226, 238, 255, .9); font-size: .95rem; max-width: 38ch; padding-right: 0; }
-.bcard--auto .bcard-ico, .bcard--trip .bcard-ico { background: rgba(255, 255, 255, .16); color: #fff; backdrop-filter: blur(8px); }
+.bcard--auto h3, .bcard--trip h3, .bcard--photo h3 { color: #fff; font-size: clamp(1.5rem, 3vw, 2rem); margin-top: 14px; }
+.bcard--auto p, .bcard--trip p, .bcard--photo p { color: rgba(226, 238, 255, .9); font-size: .95rem; max-width: 38ch; padding-right: 0; }
+.bcard--auto .bcard-ico, .bcard--trip .bcard-ico, .bcard--photo .bcard-ico { background: rgba(255, 255, 255, .16); color: #fff; backdrop-filter: blur(8px); }
 .bcard-badge { align-self: flex-start; margin-bottom: auto; padding: 8px 14px; border-radius: 999px; font: 700 .8rem/1 var(--font-body); color: var(--navy-900); background: #fff; }
 .bcard-body .link-arrow { margin-top: 18px; color: #fff; }
 
@@ -521,8 +524,8 @@ html.js .bcard-more i {
     border: 1px solid currentColor; font-size: .75rem; transition: rotate .5s var(--ease), background .3s, color .3s;
 }
 html.js .bcard-more:hover i { rotate: 90deg; background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
-html.js .bcard--blue .bcard-more, html.js .bcard--navy .bcard-more, html.js .bcard--auto .bcard-more, html.js .bcard--trip .bcard-more { color: #fff; }
-html.js .bcard--blue .bcard-more:hover i, html.js .bcard--navy .bcard-more:hover i, html.js .bcard--auto .bcard-more:hover i, html.js .bcard--trip .bcard-more:hover i { background: #fff; border-color: #fff; color: var(--blue-600); }
+html.js .bcard--blue .bcard-more, html.js .bcard--navy .bcard-more, html.js .bcard--auto .bcard-more, html.js .bcard--trip .bcard-more, html.js .bcard--photo .bcard-more { color: #fff; }
+html.js .bcard--blue .bcard-more:hover i, html.js .bcard--navy .bcard-more:hover i, html.js .bcard--auto .bcard-more:hover i, html.js .bcard--trip .bcard-more:hover i, html.js .bcard--photo .bcard-more:hover i { background: #fff; border-color: #fff; color: var(--blue-600); }
 html.js .bcard-body .bcard-more { margin-top: 10px; }
 @media (max-width: 370px) {
     html.js .bcard > .bcard-more { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
@@ -542,14 +545,13 @@ html.js .bcard-body .bcard-more { margin-top: 10px; }
     .bcard > p { padding-right: 46px; }
     .bcard--auto { min-height: 440px; }
     .bcard--trip { min-height: 280px; }
+    .bcard--photo { min-height: 400px; }
     .bcard h3 { font-size: 1.18rem; }
     .bcard p { font-size: .9rem; }
 }
 @media (min-width: 1024px) {
-    .bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(210px, auto); }
+    .bento { grid-auto-rows: minmax(210px, auto); }
     .bcard { padding: 24px; }
-    .bcard--auto { grid-row: span 2; min-height: 0; }
-    .bcard--trip { min-height: 0; }
 }
 
 /* ---------- "CONOCE MÁS..." · ventana de información de cada seguro ---------- */
