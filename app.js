@@ -14,7 +14,7 @@
        en los href de index.html (búsqueda y reemplazo global).
        ------------------------------------------------------------------ */
     const CONFIG = {
-        whatsapp: '5200000000000',
+        whatsapp: '525545550539',
     };
 
     const $ = (sel, ctx = document) => ctx.querySelector(sel);
