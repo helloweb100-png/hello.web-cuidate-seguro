@@ -11,19 +11,29 @@
     <meta name="theme-color" content="#061431">
     <meta name="color-scheme" content="light">
 
-    <!-- Open Graph / Twitter.
-         TODO producción: reemplazar og:image por la URL absoluta (https://TU-DOMINIO.com/img/og-cover.jpg)
-         y agregar <link rel="canonical" href="https://TU-DOMINIO.com/"> -->
+    <link rel="canonical" href="https://cuidateseguro.com/">
+
+    <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_MX">
     <meta property="og:site_name" content="Cuídate Seguro">
+    <meta property="og:url" content="https://cuidateseguro.com/">
     <meta property="og:title" content="Cuídate Seguro | Protege lo que más te importa">
     <meta property="og:description" content="Comparo a las mejores aseguradoras para darte la cobertura correcta al mejor precio. Auto, vida, salud, viaje y trámites de visa.">
-    <meta property="og:image" content="img/og-cover.jpg">
+    <meta property="og:image" content="https://cuidateseguro.com/img/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Cuídate Seguro, agente de seguros">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cuídate Seguro | Protege lo que más te importa">
+    <meta name="twitter:description" content="Comparo a las mejores aseguradoras para darte la cobertura correcta al mejor precio. Auto, vida, salud, viaje y trámites de visa.">
+    <meta name="twitter:image" content="https://cuidateseguro.com/img/og-cover.jpg">
 
-    <link rel="icon" href="img/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="img/favicon.png">
+    <!-- Favicon (Google pide un favicon.ico en la raíz y un PNG múltiplo de 48 px) -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/img/favicon.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <!-- Fuentes y iconos self-hosted (sin dependencia de terceros en producción) -->
     <link rel="preload" href="fonts/outfit-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -43,6 +53,9 @@
         "@context": "https://schema.org",
         "@type": "InsuranceAgency",
         "name": "Cuídate Seguro",
+        "url": "https://cuidateseguro.com/",
+        "logo": "https://cuidateseguro.com/img/logo-mark.png",
+        "image": "https://cuidateseguro.com/img/og-cover.jpg",
         "slogan": "Tu tranquilidad, nuestra misión",
         "description": "Agente de seguros que trabaja con las principales aseguradoras de México para ofrecer seguros de auto, vida, gastos médicos mayores, ahorro, PPR, universitarios, viaje, flotillas, fianzas y gestión de trámites de visas y pasaportes.",
         "areaServed": { "@type": "Country", "name": "México" },
@@ -59,6 +72,15 @@
                 { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gestión de visa americana Express, visa canadiense, pasaporte mexicano y adelanto de citas consulares" } }
             ]
         }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Cuídate Seguro",
+        "url": "https://cuidateseguro.com/",
+        "inLanguage": "es-MX"
     }
     </script>
     <script type="application/ld+json">
